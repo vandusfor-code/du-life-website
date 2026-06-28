@@ -1,66 +1,47 @@
 import React from 'react';
 
-export const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
+export const Footer: React.FC = () => (
+  <footer className="bg-[#070707] border-t border-white/[0.06]">
 
-  return (
-    <footer className="border-t border-white/5 bg-[#09090B] py-20 relative z-10">
-      <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-start justify-between gap-12">
-        
-        {/* Left Side: Logo & Tagline */}
-        <div className="flex flex-col items-start space-y-3">
-          <div className="flex items-center gap-2.5">
-            <div className="w-6 h-6 rounded bg-gradient-to-br from-primary-blue to-accent-blue flex items-center justify-center">
-              <span className="text-white font-bold text-xs">D</span>
-            </div>
-            <span className="text-text-primary font-bold text-lg tracking-tight">
-              Du Life
-            </span>
-          </div>
-          <p className="text-text-secondary text-sm font-normal">
-            Your second memory.
-          </p>
-        </div>
+    {/* Main footer body */}
+    <div className="max-w-5xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-3 gap-10">
 
-        {/* Right Side: Links & Creator Info */}
-        <div className="flex flex-col md:items-end space-y-6 text-left md:text-right">
-          {/* Quick Links */}
-          <nav className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-text-secondary font-medium">
-            <a href="#privacy" className="hover:text-text-primary transition-colors duration-300">
-              Privacy Policy
-            </a>
-            <a href="#terms" className="hover:text-text-primary transition-colors duration-300">
-              Terms of Service
-            </a>
-            <a href="mailto:contact@dur.life" className="hover:text-text-primary transition-colors duration-300">
-              Contact
-            </a>
-          </nav>
-
-          {/* Credits */}
-          <div className="space-y-1.5 pt-2 border-t border-white/5 md:border-t-0 md:pt-0">
-            <p className="text-text-secondary text-sm font-normal">
-              Created by <span className="text-text-primary font-semibold">Duvan Andres Ramos Padilla</span>
-            </p>
-            <a
-              href="https://dur.life"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent-blue hover:text-blue-400 text-sm font-semibold transition-colors duration-300 tracking-wide inline-block"
-            >
-              dur.life
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-      {/* Copyright */}
-      <div className="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-white/[0.02] text-center">
-        <p className="text-[11px] text-[#A1A1AA]/40 font-medium tracking-wide uppercase">
-          &copy; {currentYear} Du Life. All rights reserved.
+      {/* Brand */}
+      <div className="col-span-1">
+        <p className="text-[14px] font-medium text-[#f5f5f7] mb-3">Du Life</p>
+        <p className="text-[13px] text-[#6e6e73] leading-relaxed max-w-[200px]">
+          Your memory, available over WhatsApp. Private. Instant. Always on.
         </p>
       </div>
-    </footer>
-  );
-};
+
+      {/* Product */}
+      <div>
+        <p className="text-[12px] font-semibold text-[#6e6e73] uppercase tracking-wider mb-4">Product</p>
+        <ul className="space-y-2.5 text-[14px] text-[#86868b]">
+          <li><a href="#" className="apple-link">Get started</a></li>
+          <li><a href="#" className="apple-link">How it works</a></li>
+          <li><a href="#" className="apple-link">Privacy</a></li>
+        </ul>
+      </div>
+
+      {/* Legal */}
+      <div>
+        <p className="text-[12px] font-semibold text-[#6e6e73] uppercase tracking-wider mb-4">Legal</p>
+        <ul className="space-y-2.5 text-[14px] text-[#86868b]">
+          <li><a href="#" className="apple-link">Privacy Policy</a></li>
+          <li><a href="#" className="apple-link">Terms of Service</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    {/* Bottom bar */}
+    <div className="border-t border-white/[0.06]">
+      <div className="max-w-5xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-2 text-[12px] text-[#6e6e73]">
+        <span>Copyright &copy; {new Date().getFullYear()} Du Life. All rights reserved.</span>
+        <span>WhatsApp is a trademark of Meta Platforms, Inc.</span>
+      </div>
+    </div>
+
+  </footer>
+);

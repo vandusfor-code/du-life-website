@@ -1,48 +1,32 @@
+import { NoiseOverlay } from './components/NoiseOverlay';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { Features } from './components/Features';
-import { HowItWorks } from './components/HowItWorks';
-import { About } from './components/About';
-import { Privacy } from './components/Privacy';
-import { Quote } from './components/Quote';
-import { Contact } from './components/Contact';
-import { CompanyInfo } from './components/CompanyInfo';
+import { StorySection } from './components/StorySection';
+import { UseCasesGrid } from './components/UseCasesGrid';
 import { Footer } from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-bg-main text-text-primary overflow-hidden selection:bg-primary-blue/30 selection:text-white">
-      {/* Navigation */}
+    <div className="relative min-h-screen bg-[#070707] text-white overflow-x-hidden selection:bg-white/10 selection:text-white">
+      {/* Subtle paper-like grain texture across the viewport */}
+      <NoiseOverlay />
+
+      {/* Floating Navbar */}
       <Navbar />
 
-      {/* Main Content */}
+      {/* Main Orchestrated Sections */}
       <main>
-        {/* Hero Section (includes social proof badges) */}
+        {/* The Greeting & Checklist Hero */}
         <Hero />
 
-        {/* Features Grid (9 cards) */}
-        <Features />
+        {/* The Interactive Scroll-Linked Storytelling Section */}
+        <StorySection />
 
-        {/* How It Works Flow (4 steps) */}
-        <HowItWorks />
-
-        {/* About Section */}
-        <About />
-
-        {/* Privacy Section */}
-        <Privacy />
-
-        {/* Philosophical Quote */}
-        <Quote />
-
-        {/* Contact Section */}
-        <Contact />
-
-        {/* Company Info (Meta Verification) */}
-        <CompanyInfo />
+        {/* Bento Grid of Real-world Use Cases */}
+        <UseCasesGrid />
       </main>
 
-      {/* Footer */}
+      {/* Minimal Footer */}
       <Footer />
     </div>
   );
