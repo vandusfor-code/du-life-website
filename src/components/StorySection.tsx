@@ -1,119 +1,153 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { PhoneMockup } from './PhoneMockup';
 
-interface Step {
-  id: number;
-  headline: string;
-  body: string;
-}
-
-const steps: Step[] = [
+const steps = [
   {
     id: 1,
-    headline: 'You can\'t remember everything.',
-    body: 'The keys, the warranty, the wifi password, the name of that place. Your mind has better things to do.',
+    headline: "You can't\nremember\neverything.",
+    body: 'The keys, the warranty, the wifi password. Your mind has better things to do.',
   },
   {
     id: 2,
-    headline: 'Just send a message.',
-    body: 'Type or voice-note anything to Du Life on WhatsApp. Like texting a friend. No setup, no tags, no categories.',
+    headline: 'Just send\na message.',
+    body: 'Text or voice-note to Du Life on WhatsApp. Like messaging a friend. Nothing to set up.',
   },
   {
     id: 3,
-    headline: 'It\'s saved instantly.',
-    body: 'Du Life understands context, extracts what matters, and stores it securely. Done in under a second.',
+    headline: "It's saved\nin a second.",
+    body: 'Du Life reads it, understands context, and stores it securely. Done.',
   },
   {
     id: 4,
-    headline: 'Weeks go by.',
-    body: 'You forget — that\'s the point. Your brain moves on. Du Life holds the thread.',
+    headline: 'Weeks\ngo by.',
+    body: "You forget \u2014 that\u2019s the point. Your brain moves on. Du Life holds the thread.",
   },
   {
     id: 5,
-    headline: 'Ask, and it answers.',
-    body: '"Where are the car keys?" In the blue vase. Saved June 28. Every detail, exactly as you left it.',
+    headline: 'Ask.\nIt answers.',
+    body: '"Where are the car keys?" — In the blue vase. Saved June 28.',
   },
 ];
 
-export const StorySection: React.FC = () => {
+// Full-bleed marquee strip between sections
+const Marquee = () => {
+  const words = ['REMEMBER · ', 'RECALL · ', 'RETAIN · ', 'REMEMBER · ', 'RECALL · ', 'RETAIN · '];
+  const repeated = [...words, ...words]; // doubled for seamless loop
+  return (
+    <div style={{
+      overflow: 'hidden', borderTop: '1px solid rgba(255,255,255,0.06)',
+      borderBottom: '1px solid rgba(255,255,255,0.06)',
+      padding: '18px 0', userSelect: 'none',
+    }}>
+      <div className="marquee-track">
+        {repeated.map((w, i) => (
+          <span key={i} style={{
+            fontSize: 'clamp(11px, 1.2vw, 14px)', fontWeight: 500,
+            color: 'rgba(240,240,240,0.18)', letterSpacing: '0.16em', marginRight: 0,
+          }}>
+            {w}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export const StorySection = () => {
   const [active, setActive] = useState(1);
 
   return (
-    <section className="relative bg-[#070707] separator">
+    <>
+      <Marquee />
 
-      <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-0">
+      <section style={{ background: '#070707', position: 'relative' }}>
+        <div style={{ maxWidth: 1120, margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100vh' }}>
 
-        {/* ── LEFT: scrolling text ── */}
-        <div className="py-32 relative">
-
-          {/* Progress line */}
-          <div className="absolute left-0 top-32 bottom-32 w-px bg-white/[0.06] hidden lg:block">
-            <motion.div
-              className="w-px bg-[#f5f5f7]/50"
-              style={{ transformOrigin: 'top' }}
-              animate={{ scaleY: (active - 1) / (steps.length - 1) }}
-              transition={{ type: 'spring', stiffness: 60, damping: 20 }}
-            />
-          </div>
-
-          <div className="space-y-[36vh]">
-            {steps.map((step) => {
-              const isActive = active === step.id;
-              return (
-                <motion.div
-                  key={step.id}
-                  onViewportEnter={() => setActive(step.id)}
-                  viewport={{ amount: 0.55 }}
-                  className="pl-0 lg:pl-10 min-h-[30vh] flex flex-col justify-center"
-                >
-                  {/* Step number — small, quiet */}
-                  <motion.span
-                    animate={{ opacity: isActive ? 0.35 : 0.15 }}
-                    className="text-[11px] font-medium text-[#f5f5f7] tracking-widest mb-5 block"
+            {/* ── LEFT: full-height scroll steps ── */}
+            <div style={{ padding: '0 32px', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
+              {steps.map((step, idx) => {
+                const isActive = active === step.id;
+                return (
+                  <motion.div
+                    key={step.id}
+                    onViewportEnter={() => setActive(step.id)}
+                    viewport={{ amount: 0.5 }}
+                    style={{
+                      minHeight: '70vh',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      paddingTop: idx === 0 ? '15vh' : 0,
+                      paddingBottom: idx === steps.length - 1 ? '15vh' : 0,
+                    }}
                   >
-                    {String(step.id).padStart(2, '0')}
-                  </motion.span>
+                    {/* Large step number — structural, not decorative */}
+                    <motion.span
+                      animate={{ opacity: isActive ? 0.18 : 0.07 }}
+                      transition={{ duration: 0.3 }}
+                      style={{
+                        fontSize: 11, fontWeight: 500, color: '#f0f0f0',
+                        letterSpacing: '0.12em', marginBottom: 32, display: 'block',
+                      }}
+                    >
+                      {String(step.id).padStart(2, '0')} / {steps.length.toString().padStart(2, '0')}
+                    </motion.span>
 
-                  {/* Headline — Apple weight, Apple size */}
-                  <motion.h3
-                    animate={{ opacity: isActive ? 1 : 0.25, y: isActive ? 0 : 4 }}
-                    transition={{ duration: 0.4 }}
-                    className="text-[28px] sm:text-[34px] font-semibold tracking-tight text-[#f5f5f7] leading-tight mb-4"
-                  >
-                    {step.headline}
-                  </motion.h3>
+                    {/* Headline — line breaks are intentional, creates shape */}
+                    <motion.h2
+                      animate={{ opacity: isActive ? 1 : 0.2 }}
+                      transition={{ duration: 0.5 }}
+                      style={{
+                        fontSize: 'clamp(36px, 4.5vw, 64px)',
+                        fontWeight: 600,
+                        letterSpacing: '-0.035em',
+                        lineHeight: 1.08,
+                        color: '#f0f0f0',
+                        margin: '0 0 24px 0',
+                        whiteSpace: 'pre-line',
+                      }}
+                    >
+                      {step.headline}
+                    </motion.h2>
 
-                  {/* Body — Apple body copy style: 17px, #86868b */}
-                  <motion.p
-                    animate={{ opacity: isActive ? 0.65 : 0.18 }}
-                    transition={{ duration: 0.4 }}
-                    className="text-[17px] font-light text-[#f5f5f7] leading-relaxed max-w-md"
-                  >
-                    {step.body}
-                  </motion.p>
-                </motion.div>
-              );
-            })}
+                    <motion.p
+                      animate={{ opacity: isActive ? 0.5 : 0.12 }}
+                      transition={{ duration: 0.5 }}
+                      style={{
+                        fontSize: 16, fontWeight: 300, color: '#f0f0f0',
+                        lineHeight: 1.7, maxWidth: 360,
+                        margin: 0, letterSpacing: '-0.005em',
+                      }}
+                    >
+                      {step.body}
+                    </motion.p>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* ── RIGHT: sticky phone ── */}
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
+              <div style={{ position: 'sticky', top: '15vh', paddingTop: '15vh' }}>
+                <PhoneMockup step={active} />
+              </div>
+            </div>
+
           </div>
         </div>
 
-        {/* ── RIGHT: sticky phone ── */}
-        <div className="hidden lg:flex items-start justify-center">
-          <div className="sticky top-[12vh] py-16">
-            <PhoneMockup step={active} />
-          </div>
-        </div>
+        {/* Mobile — simple stack */}
+        <style>{`
+          @media (max-width: 768px) {
+            .story-grid { grid-template-columns: 1fr !important; }
+            .story-phone { display: none !important; }
+          }
+        `}</style>
+      </section>
 
-      </div>
-
-      {/* Mobile: phone fixed at top */}
-      <div className="lg:hidden sticky top-12 z-20 bg-[#070707]/95 backdrop-blur-xl border-b border-white/[0.06] flex justify-center py-4">
-        <div className="scale-75 origin-top -my-12">
-          <PhoneMockup step={active} />
-        </div>
-      </div>
-
-    </section>
+      <Marquee />
+    </>
   );
 };
