@@ -35,7 +35,6 @@ export const UseCasesGrid = () => {
   // Reveal messages one-by-one as section enters view
   useEffect(() => {
     if (!inView) return;
-    const realMessages = conversation.filter(m => m.role !== 'divider');
     let i = 0;
     const t = setInterval(() => {
       setVisibleCount(v => v + 1);
