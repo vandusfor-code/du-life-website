@@ -50,24 +50,24 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({ step }) => {
     switch (currentStep) {
       case 1:
         return [
-          { id: 'f1', sender: 'user', text: "Where did I put the spare car keys?", time: "10:24 AM", status: 'read' },
-          { id: 'f2', sender: 'system', text: "🤔 No memory found. You didn't save this.", time: "10:24 AM" }
+          { id: 'f1', sender: 'user', text: "¿Dónde dejé las llaves de repuesto del carro?", time: "10:24 AM", status: 'read' },
+          { id: 'f2', sender: 'system', text: "🤔 No encontré ese recuerdo. Nunca me lo contaste.", time: "10:24 AM" }
         ];
       case 2:
         return [
-          { id: 'm1', sender: 'user', text: "Remember: I put the spare car keys in the blue vase.", time: "10:28 AM", status: 'sent' }
+          { id: 'm1', sender: 'user', text: "Recuerda: dejé las llaves de repuesto en el florero azul.", time: "10:28 AM", status: 'sent' }
         ];
       case 3:
         return [
-          { id: 'u1', sender: 'user', text: "Remember: I put the spare car keys in the blue vase.", time: "10:28 AM", status: 'read' },
-          { id: 'u2', sender: 'bot', text: "🔒 Saved. I'll remember that the spare car keys are in the blue vase.", time: "10:28 AM" }
+          { id: 'u1', sender: 'user', text: "Recuerda: dejé las llaves de repuesto en el florero azul.", time: "10:28 AM", status: 'read' },
+          { id: 'u2', sender: 'bot', text: "🔒 Guardado. Recordaré que las llaves de repuesto están en el florero azul.", time: "10:28 AM" }
         ];
       case 4:
         return [];
       case 5:
         return [
-          { id: 'a1', sender: 'user', text: "where are the car keys?", time: "2:15 PM", status: 'read' },
-          { id: 'a2', sender: 'bot', text: "🔑 In the blue vase. Saved on June 28 (3 months ago).", time: "2:15 PM" }
+          { id: 'a1', sender: 'user', text: "¿dónde quedaron las llaves del carro?", time: "2:15 PM", status: 'read' },
+          { id: 'a2', sender: 'bot', text: "🔑 En el florero azul. Lo guardaste el 28 de junio (hace 3 meses).", time: "2:15 PM" }
         ];
       default:
         return [];
@@ -125,29 +125,29 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({ step }) => {
                   transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
                   className="w-16 h-16 rounded-full border-2 border-white/5 border-t-white/40 mb-6"
                 />
-                <motion.span 
+                <motion.span
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                   className="text-xs tracking-[0.2em] text-white/40 uppercase font-mono"
                 >
-                  Time passes
+                  El tiempo pasa
                 </motion.span>
-                <motion.h3 
+                <motion.h3
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.4 }}
                   className="text-2xl font-light tracking-tight mt-2 text-white/90"
                 >
-                  3 Months Later
+                  3 meses después
                 </motion.h3>
-                <motion.p 
+                <motion.p
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.6 }}
                   className="text-xs text-white/45 max-w-[180px] mt-2 font-light"
                 >
-                  Your brain forgot. Du Life did not.
+                  Tu mente lo olvidó. Du Life no.
                 </motion.p>
               </motion.div>
             )}
@@ -175,14 +175,14 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({ step }) => {
             <div className="flex items-center gap-1.5">
               <ArrowLeft className="w-4 h-4 text-white/70" />
               
-              <div className="relative w-8 h-8 rounded-full bg-gradient-to-tr from-[#141414] to-[#252525] border border-white/10 flex items-center justify-center overflow-hidden">
-                <span className="text-[10px] font-bold text-white tracking-widest">DU</span>
+              <div className="relative w-8 h-8 rounded-full bg-[#C4E938] border border-white/10 flex items-center justify-center overflow-hidden">
+                <span className="text-[10px] font-bold text-black tracking-widest">DU</span>
                 <div className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-green-500 border border-[#0c0c0d]"></div>
               </div>
-              
+
               <div className="flex flex-col">
                 <span className="text-xs font-semibold text-white/90 leading-tight">Du Life</span>
-                <span className="text-[9px] text-green-400 font-light leading-none">online</span>
+                <span className="text-[9px] text-green-400 font-light leading-none">en línea</span>
               </div>
             </div>
 
@@ -233,7 +233,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({ step }) => {
                         className={`relative max-w-[80%] rounded-[18px] px-3.5 py-2 text-xs shadow-sm leading-relaxed ${
                           isUser
                             ? 'bg-[#1e1e24] text-white/95 rounded-tr-sm border border-white/5'
-                            : 'bg-[#121215] text-white/90 rounded-tl-sm border border-white/5'
+                            : 'bg-[#121215] text-white/90 rounded-tl-sm border border-[#C4E938]/20'
                         }`}
                       >
                         <p className="font-light">{msg.text}</p>
@@ -243,7 +243,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({ step }) => {
                             <span>
                               {msg.status === 'sent' && <Check className="w-2.5 h-2.5" />}
                               {msg.status === 'delivered' && <CheckCheck className="w-2.5 h-2.5" />}
-                              {msg.status === 'read' && <CheckCheck className="w-2.5 h-2.5 text-blue-400" />}
+                              {msg.status === 'read' && <CheckCheck className="w-2.5 h-2.5 text-[#C4E938]" />}
                             </span>
                           )}
                         </div>
@@ -260,16 +260,16 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({ step }) => {
             <div className="flex-1 bg-[#151518] rounded-full px-3 py-1.5 flex items-center gap-2 border border-white/5">
               <Smile className="w-4 h-4 text-white/45 shrink-0" />
               <div className="flex-1 text-[11px] text-white/30 font-light truncate">
-                {step === 1 && "Type a message..."}
-                {step === 2 && "typing..."}
-                {step === 3 && "Du Life is thinking..."}
+                {step === 1 && "Escribe un mensaje..."}
+                {step === 2 && "escribiendo..."}
+                {step === 3 && "Du Life está pensando..."}
                 {step === 4 && "..."}
-                {step === 5 && "Type a message..."}
+                {step === 5 && "Escribe un mensaje..."}
               </div>
               <Paperclip className="w-3.5 h-3.5 text-white/45 shrink-0" />
             </div>
-            <div className="w-8 h-8 rounded-full bg-[#1f2026] border border-white/10 flex items-center justify-center shrink-0">
-              <Send className="w-3.5 h-3.5 text-white/80 ml-[1px]" />
+            <div className="w-8 h-8 rounded-full bg-[#C4E938] border border-white/10 flex items-center justify-center shrink-0">
+              <Send className="w-3.5 h-3.5 text-black ml-[1px]" />
             </div>
           </div>
 

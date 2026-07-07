@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-const TEXT = 
-  "We forget. We lose. We fragment. We forget 80% of our daily life. The ideas that spark at 3 AM. Documents and receipts. The names of people who matter. Warranties and passwords. Conversations that shaped us. Our experiences are scattered across twenty different apps. Fragmented. Lost.";
+const TEXT =
+  "Olvidamos. Perdemos. Fragmentamos. Olvidamos el 80% de nuestro día a día. Las ideas que surgen a las 3 AM. Documentos y facturas. Los nombres de las personas que importan. Garantías y contraseñas. Conversaciones que nos marcaron. Nuestra vida está repartida en diez aplicaciones distintas. Fragmentada. Perdida.";
 
 interface WordProps {
   word: string;
@@ -41,13 +41,13 @@ export const Problem = () => {
   const words = TEXT.split(" ");
 
   return (
-    <section 
+    <section
       id="problem"
-      ref={containerRef} 
-      className="relative w-full bg-[#020202] py-[15vh] border-b border-white/[0.04]"
+      ref={containerRef}
+      className="relative w-full bg-[#0D0D11] py-[15vh] border-b border-white/[0.04]"
     >
       {/* Background radial highlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-radial from-white/[0.01] to-transparent pointer-events-none blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-radial from-[#C4E938]/[0.02] to-transparent pointer-events-none blur-3xl" />
 
       <div className="max-w-[1200px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16">
         
@@ -55,10 +55,10 @@ export const Problem = () => {
         <div className="lg:col-span-3 lg:sticky lg:top-[12vh] h-fit">
           <div className="space-y-4">
             <span className="text-[11px] font-mono tracking-[0.2em] text-white/30 uppercase">
-              01 / THE HUMAN CONSTRAINTS
+              01 / LAS LIMITACIONES HUMANAS
             </span>
             <h3 className="text-xl font-light text-white/80 tracking-tight">
-              The leakage of daily life.
+              La fuga de la vida diaria.
             </h3>
           </div>
         </div>
@@ -88,12 +88,12 @@ export const Problem = () => {
             >
               <div>
                 <p className="text-[14px] text-white/40 leading-relaxed font-light">
-                  Every day, we generate hundreds of pieces of information. Important document files, random purchase histories, ideas we sketch in notebook apps, and agreements made over text messages.
+                  Cada día generamos cientos de piezas de información: documentos importantes, historiales de compra, ideas anotadas en apps de notas y acuerdos hechos por mensaje de texto.
                 </p>
               </div>
               <div>
                 <p className="text-[14px] text-white/40 leading-relaxed font-light">
-                  But our brain isn't designed to index folders. Information scatters, silos, and slowly slips into complete oblivion. We lose hours searching. We forget what we once knew.
+                  Pero nuestro cerebro no está diseñado para indexar carpetas. La información se dispersa, se aísla y termina en el olvido. Perdemos horas buscando. Olvidamos lo que alguna vez supimos.
                 </p>
               </div>
             </motion.div>

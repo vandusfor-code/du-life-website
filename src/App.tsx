@@ -1,63 +1,63 @@
 import { Grain } from './components/NoiseOverlay';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { TrustBar } from './components/TrustBar';
+import { ValueProps } from './components/ValueProps';
 import { Problem } from './components/Problem';
 import { TheShift } from './components/TheShift';
-import { Timeline } from './components/Timeline';
-import { KnowledgeGraph } from './components/KnowledgeGraph';
-import { MemorySearch } from './components/MemorySearch';
-import { TheExperience } from './components/TheExperience';
-import { UseCasesGrid } from './components/UseCasesGrid';
+import { FeaturesGrid } from './components/FeaturesGrid';
+import { ProductShowcase } from './components/ProductShowcase';
+import { HowItWorks } from './components/HowItWorks';
 import { Privacy } from './components/Privacy';
-import { Testimonials } from './components/Testimonials';
 import { FinalCTA } from './components/FinalCTA';
+import { CompanyInfo } from './components/CompanyInfo';
 import { Footer } from './components/Footer';
 
 function App() {
   return (
-    <div className="bg-[#020202] text-[#f0f0f0] min-h-screen overflow-x-hidden relative">
+    <div className="bg-[#0D0D11] text-[#f0f0f0] min-h-screen overflow-x-hidden relative">
       {/* Animated fine grain overlay for tactile texture */}
       <Grain />
-      
+
       {/* Global Navigation Header */}
       <Navbar />
-      
+
       <main>
-        {/* Section 1: Hero with floating memory particle canvas */}
+        {/* Section 1: Hero with WhatsApp phone mockup */}
         <Hero />
-        
-        {/* Section 2: Typographic scroll-dissolve word problem */}
+
+        {/* Section 2: Trust bar with animated metrics */}
+        <TrustBar />
+
+        {/* Section 3: Value proposition — 3 cards */}
+        <ValueProps />
+
+        {/* Section 4: Typographic scroll-dissolve problem statement */}
         <Problem />
-        
-        {/* Section 3: Dual column AI memory comparison shift */}
+
+        {/* Section 5: Du Life vs. general AI comparison */}
         <TheShift />
-        
-        {/* Section 4: Vertical scrolling year timeline */}
-        <Timeline />
-        
-        {/* Section 5: Dynamic interactive canvas knowledge node graph */}
-        <KnowledgeGraph />
-        
-        {/* Section 6: Tabbed WhatsApp search query responder simulator */}
-        <MemorySearch />
-        
-        {/* Section 7: Media ingestion pipeline (audio, docs, photos) */}
-        <TheExperience />
-        
-        {/* Section 7b: Detailed dialogue stats, voice waveforms, and PDF invoice mockup */}
-        <UseCasesGrid />
-        
-        {/* Section 8: Zero-knowledge encryption trust presentation */}
+
+        {/* Section 6: Features grid — 8 core capabilities */}
+        <FeaturesGrid />
+
+        {/* Section 7: Real product screenshots showcase */}
+        <ProductShowcase />
+
+        {/* Section 8: How it works — 3 steps with animated line */}
+        <HowItWorks />
+
+        {/* Section 9: Privacy & security trust section */}
         <Privacy />
-        
-        {/* Section 9: Narrative-driven narrative testimonials */}
-        <Testimonials />
-        
-        {/* Section 10: Massive typography final call-to-action */}
+
+        {/* Section 10: Final call-to-action */}
         <FinalCTA />
+
+        {/* Section 11: Company information — required for Meta/WhatsApp Business verification */}
+        <CompanyInfo />
       </main>
-      
-      {/* Footer copyright and Meta warnings */}
+
+      {/* Footer copyright and Meta trademark note */}
       <Footer />
     </div>
   );

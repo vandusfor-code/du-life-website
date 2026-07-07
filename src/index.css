@@ -4,20 +4,26 @@
 
 @theme {
   --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-lime: #C4E938;
+  --color-lime-dark: #A8CC1E;
+  --color-ink: #0D0D11;
+  --color-card: #16161F;
+  --color-card-hover: #1D1D28;
 }
 
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
 
   html {
-    background: #070707;
+    background: #0D0D11;
     /* Prevent layout shift from scrollbar */
     overflow-y: scroll;
+    scrollbar-width: none;
   }
 
   body {
     margin: 0;
-    background: #070707;
+    background: #0D0D11;
     color: #f0f0f0;
     font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -28,9 +34,8 @@
 
   /* Hide scrollbar but keep scroll */
   ::-webkit-scrollbar { width: 0; background: transparent; }
-  scrollbar-width: none;
 
-  ::selection { background: rgba(255,255,255,0.12); color: #fff; }
+  ::selection { background: rgba(196,233,56,0.25); color: #fff; }
 }
 
 /* ── Grain ─────────────────────────────────────────────────────────── */

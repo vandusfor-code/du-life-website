@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, ArrowUpRight } from 'lucide-react';
+import { MagneticButton } from './MagneticButton';
+import { HeroVisual } from './HeroVisual';
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -24,6 +26,7 @@ export const Hero = () => {
       vy: number;
       radius: number;
       alpha: number;
+      lime: boolean;
 
       constructor() {
         this.x = Math.random() * width;
@@ -32,6 +35,7 @@ export const Hero = () => {
         this.vy = (Math.random() - 0.5) * 0.28;
         this.radius = Math.random() * 1.5 + 1;
         this.alpha = Math.random() * 0.35 + 0.15;
+        this.lime = Math.random() > 0.85;
       }
 
       update() {
@@ -48,7 +52,9 @@ export const Hero = () => {
       draw(c: CanvasRenderingContext2D) {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        c.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+        c.fillStyle = this.lime
+          ? `rgba(196, 233, 56, ${this.alpha})`
+          : `rgba(255, 255, 255, ${this.alpha})`;
         c.fill();
       }
     }
@@ -98,8 +104,8 @@ export const Hero = () => {
         height / 2,
         Math.max(width, height) * 0.8
       );
-      radialGlow.addColorStop(0, '#0a0a0c');
-      radialGlow.addColorStop(1, '#020202');
+      radialGlow.addColorStop(0, '#131309');
+      radialGlow.addColorStop(1, '#0D0D11');
       ctx.fillStyle = radialGlow;
       ctx.fillRect(0, 0, width, height);
 
@@ -123,7 +129,7 @@ export const Hero = () => {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.08 * (1 - distMouse / 220)})`;
+            ctx.strokeStyle = `rgba(196, 233, 56, ${0.08 * (1 - distMouse / 220)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -161,7 +167,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#020202]">
+    <section className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#0D0D11]">
       {/* Interactive Background Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-auto" />
 
@@ -171,10 +177,10 @@ export const Hero = () => {
       {/* Top spacer */}
       <div className="h-20" />
 
-      {/* Main Hero Copy Container */}
-      <div className="relative z-10 flex-1 max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col justify-center w-full">
-        <div className="max-w-[850px] space-y-8">
-          
+      {/* Main Hero Content: copy + phone mockup */}
+      <div className="relative z-10 flex-1 max-w-[1200px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 items-center gap-8 w-full">
+        <div className="max-w-[620px] space-y-8">
+
           {/* Subtle Tagline */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -182,40 +188,32 @@ export const Hero = () => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-white/[0.06] bg-white/[0.02] backdrop-blur-md"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C4E938] animate-pulse" />
             <span className="text-[11px] font-medium tracking-[0.16em] uppercase text-white/50">
-              Your Memory Operating System
+              Tu asistente personal por WhatsApp
             </span>
           </motion.div>
 
-          {/* Enormous typography headlines */}
-          <div className="space-y-3">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[44px] sm:text-[68px] md:text-[88px] lg:text-[104px] font-light tracking-[-0.04em] leading-[0.92] text-white"
-            >
-              Remember everything.
-            </motion.h1>
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[44px] sm:text-[68px] md:text-[88px] lg:text-[104px] font-light tracking-[-0.04em] leading-[0.92] text-white/40"
-            >
-              Forget nothing.
-            </motion.h1>
-          </div>
+          {/* Enormous typography headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[40px] sm:text-[56px] md:text-[64px] font-light tracking-[-0.04em] leading-[1.02] text-white"
+          >
+            Tu vida, organizada
+            <br />
+            por <span className="text-[#C4E938]">WhatsApp</span>.
+          </motion.h1>
 
           {/* Supporting Copy */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg md:text-xl font-light text-white/50 leading-relaxed max-w-[580px] tracking-tight"
+            className="text-lg font-light text-white/50 leading-relaxed max-w-[480px] tracking-tight"
           >
-            Your life deserves a second memory. Du Life lives in WhatsApp, keeping track of conversations, documents, purchases, and ideas forever.
+            No hay que descargar ni aprender nada nuevo. Escríbele a Du Life como a un contacto más, y una IA se encarga de tus finanzas, tareas, calendario, notas y documentos.
           </motion.p>
 
           {/* Call to Actions */}
@@ -225,35 +223,43 @@ export const Hero = () => {
             transition={{ duration: 1, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4"
           >
-            <a
-              href="https://wa.me/your_number_here"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex items-center justify-center gap-2.5 px-7 py-4 rounded-full bg-white text-black font-medium text-[14px] transition-transform duration-300 hover:scale-[1.02] shadow-[0_4px_24px_rgba(255,255,255,0.12)] cursor-pointer"
+            <MagneticButton
+              className="px-7 py-4 rounded-full bg-[#C4E938] text-black font-semibold text-[14px] hover:bg-[#d4f552] transition-colors duration-300 shadow-[0_4px_30px_rgba(196,233,56,0.18)]"
+              onClick={() => window.open('https://wa.me/your_number_here', '_blank', 'noopener,noreferrer')}
             >
-              <MessageSquare className="w-4 h-4 fill-black text-black shrink-0 transition-transform duration-300 group-hover:scale-110" />
-              <span>Start on WhatsApp</span>
-            </a>
+              <MessageSquare className="w-4 h-4 fill-black text-black shrink-0" />
+              <span>Empieza ahora</span>
+            </MagneticButton>
 
             <a
-              href="#problem"
+              href="#funciones"
               className="group flex items-center justify-center gap-1.5 px-6 py-4 rounded-full border border-white/10 hover:border-white/20 bg-white/[0.01] hover:bg-white/[0.03] transition-colors duration-300 text-[14px] text-white/70 hover:text-white"
             >
-              <span>Explore Du Life</span>
+              <span>Explora Du Life</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-white/50 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </motion.div>
 
         </div>
+
+        {/* Phone mockup — WhatsApp conversation animating */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden lg:flex justify-center items-center"
+        >
+          <HeroVisual />
+        </motion.div>
       </div>
 
       {/* Bottom bar - Scroll guide & silent assurances */}
       <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 md:px-12 py-8 flex flex-row items-center justify-between border-t border-white/[0.05]">
         <span className="text-[11px] font-mono tracking-widest text-white/25">
-          STRICTLY PRIVATE · ZERO DOWNLOAD
+          100% PRIVADO · CERO DESCARGAS
         </span>
         <div className="flex items-center gap-4 text-[11px] font-mono text-white/35">
-          <span>SCROLL TO BEGIN</span>
+          <span>SIGUE BAJANDO</span>
           <motion.span
             animate={{ y: [0, 4, 0] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
