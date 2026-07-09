@@ -31,7 +31,7 @@ export const Footer: React.FC = () => (
       <div>
         <p className="text-[11px] font-mono tracking-wider text-white/30 uppercase mb-4">Legal</p>
         <ul className="space-y-2.5 text-[13px] text-white/50 font-light">
-          <li><a href="#" className="hover:text-[#C4E938] transition-colors">Política de privacidad</a></li>
+          <li><a href="/privacy-policy.html" className="hover:text-[#C4E938] transition-colors">Política de privacidad</a></li>
           <li><a href="#" className="hover:text-[#C4E938] transition-colors">Términos de servicio</a></li>
         </ul>
       </div>
